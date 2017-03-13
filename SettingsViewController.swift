@@ -20,19 +20,6 @@ class SettingsViewController: UIViewController {
         //loadSettingScreenWithValues()
     }
     
-    /**
-     loadSettingScreenWithValues will load the values into the Settings part based on what user had previously set
-     **/
-    /**func loadSettingScreenWithValues() {
-        
-        let defaults = UserDefaults.standard
-        
-        //Setting the default tip percentage in Settings Screen as set by user
-        let selectedDefaultTipPosition = defaults.integer(forKey: "defaultTipPercentageKey")
-    
-        defaultTipControl.selectedSegmentIndex = selectedDefaultTipPosition
-    }**/
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
