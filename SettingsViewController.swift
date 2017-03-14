@@ -17,21 +17,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        //loadSettingScreenWithValues()
     }
-    
-    /**
-     loadSettingScreenWithValues will load the values into the Settings part based on what user had previously set
-     **/
-    /**func loadSettingScreenWithValues() {
-        
-        let defaults = UserDefaults.standard
-        
-        //Setting the default tip percentage in Settings Screen as set by user
-        let selectedDefaultTipPosition = defaults.integer(forKey: "defaultTipPercentageKey")
-    
-        defaultTipControl.selectedSegmentIndex = selectedDefaultTipPosition
-    }**/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,12 +39,13 @@ class SettingsViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.set(defaultTipControl.selectedSegmentIndex, forKey: "defaultTipControlKey")
             defaults.synchronize()
-        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let defaults = UserDefaults.standard
         defaultTipControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipControlKey")
+    
     }
 
 }

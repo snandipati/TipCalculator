@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         let defaults = UserDefaults.standard
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipControlKey")
         
+        
         // Animation Block
         self.tipLabel.alpha = 0
         self.totalLabel.alpha = 0
@@ -34,8 +35,8 @@ class ViewController: UIViewController {
             self.totalLabel.alpha = 1
         })
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,6 +53,10 @@ class ViewController: UIViewController {
         
         tipLabel.text = String(format: "$%.2f", tipAmount)
         totalLabel.text = String(format: "$%.2f", total)
+        
+       /** //Storing the bill amount in defaults
+        let defaults = UserDefaults.standard
+        defaults.set(billField.text, forKey: "billFieldText")**/
     }
     
     @IBAction func onTap(_ sender: AnyObject) {
@@ -66,3 +71,4 @@ class ViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
 }
+
