@@ -1,6 +1,6 @@
 # Pre-work - *TipCalculator*
 
-**NTipCalculator** is a tip calculator application for iOS.
+**TipCalculator** is a tip calculator application for iOS.
 
 Submitted by: **Silpa Nandipati**
 
@@ -37,7 +37,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Silpa Nandipati]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
