@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipControlKey")
+        calculateTip(billField)
         
         
         // Animation Block
@@ -50,14 +51,9 @@ class ViewController: UIViewController {
         let tipAmount = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
         let total = billAmount + tipAmount
         
-        
         tipLabel.text = String(format: "$%.2f", tipAmount)
         totalLabel.text = String(format: "$%.2f", total)
-        
-       /** //Storing the bill amount in defaults
-        let defaults = UserDefaults.standard
-        defaults.set(billField.text, forKey: "billFieldText")**/
-    }
+        }
     
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
@@ -70,5 +66,6 @@ class ViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
+    
 }
 
