@@ -14,29 +14,54 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var twoPersonTotalLabel: UILabel!
+    @IBOutlet weak var threePersonTotalLabel: UILabel!
+    @IBOutlet weak var fourPersonTotalLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        //Making bill filed the first responder
         billField.becomeFirstResponder()
+    
         
         let defaults = UserDefaults.standard
         tipControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipControlKey")
-        calculateTip(billField)
-        
-        
-        // Animation Block
-        self.tipLabel.alpha = 0
-        self.totalLabel.alpha = 0
-        UIView.animate(withDuration: 0.6, animations: {
-            self.tipLabel.alpha = 1
-            self.totalLabel.alpha = 1
-        })
+        let selectedThemeId = defaults.integer(forKey: "defaultThemeKey")
+        updateTheme(selectedThemePosition: selectedThemeId)
+        calculateTip(billField);
     }
     
+    func updateTheme(selectedThemePosition: Int) {
+        if(selectedThemePosition == 1) {
+            //Set light color theme
+            lightTheme()
+        } else if(selectedThemePosition == 0) {
+            //Set dark color theme
+            darkTheme()
+        }
+    }
+    
+    func darkTheme() {
+        //Main view
+        self.view.backgroundColor = UIColor.darkGray
+        self.view.tintColor = UIColor.orange
+        tipLabel.textColor = UIColor.orange
+        totalLabel.textColor = UIColor.orange
+        twoPersonTotalLabel.textColor = UIColor.orange
+        threePersonTotalLabel.textColor = UIColor.orange
+        fourPersonTotalLabel.textColor = UIColor.orange
+        billField.textColor = UIColor.orange
+    }
+    
+    func lightTheme() {
+        //Main view
+        self.view.backgroundColor = UIColor.white
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,15 +75,32 @@ class ViewController: UIViewController {
         let billAmount = Double(billField.text!) ?? 0
         let tipAmount = billAmount * tipPercentages[tipControl.selectedSegmentIndex]
         let total = billAmount + tipAmount
+        let twoTotal = total/2
+        let threeTotal = total/3
+        let fourTotal = total/4
         
         tipLabel.text = String(format: "$%.2f", tipAmount)
         totalLabel.text = String(format: "$%.2f", total)
-        }
+        twoPersonTotalLabel.text = String(format: "$%.2f",twoTotal)
+        threePersonTotalLabel.text = String(format: "$%.2f",threeTotal)
+        fourPersonTotalLabel.text = String(format: "$%.2f",fourTotal)
+
+}
     
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     
+         // Animation Block
+        self.tipLabel.alpha = 0
+        self.totalLabel.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.tipLabel.alpha = 1
+            self.totalLabel.alpha = 1
+        })
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
